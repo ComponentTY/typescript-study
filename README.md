@@ -1,2 +1,2 @@
 # typescript-study
-typescript学习日记
+typescript学习笔记
