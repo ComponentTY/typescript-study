@@ -56,6 +56,9 @@
    // 例2
    let arr: [number, string]
    arr = [1, 2] // Error
+   
+   // 例3
+   let arr: any[] = [1, '23', true]
    ```
 
    当访问一个已知的索引的时候，会得到正确的类型；
@@ -83,6 +86,10 @@
    let c:Color = Color.Green
    
    c // 1
+   
+   enum People { firstName, secondName }
+   let p: People = People.firstName
+   p // 0
    ```
 
    默认情况下从0开始为元素编号，我们可以手动指定成员的数值，我们可以将上面的例子改为从1开始编号；
@@ -91,7 +98,21 @@
    enum Color {Red = 1, Green, Blue}
    let c: Color = Color.Green
    c // 2
+   
+   // 例2：
+   enum People{
+       firstName,
+       secondName = 5,
+       thirdName
+   }
+   
+   let p1:People = People.firstName
+   let p3:People = People.thirdName
+   
+   console.log(p1, p3) // 0 6
    ```
+
+   根据上面的例2，我们手动改变了secondName的编号，得到p1是0， p3 是 6， 我们得知，手动指定的成员数值，只会对这个成员之后的成员编号有影响，对之前的成员编号没有影响。
 
    或者可以全部采用手动赋值
 
@@ -101,7 +122,7 @@
    c // 4
    ```
 
-   枚举类型提供的一个便利是你可以有枚举的值得到他的名字，例如，我们知道数值2，但是我们不确定他映射到Color的那个名字，我们可以直接查找相应的名字；
+   枚举类型提供的一个便利是你可以由枚举的值得到他的名字，例如，我们知道数值2，但是我们不确定他映射到Color的那个名字，我们可以直接查找相应的名字；
 
    ```tsx
    enum Color { Red = 1, Green = 2, Blue = 5 }
@@ -160,11 +181,13 @@
 
    > 注： 我们鼓励尽可能的使用`--strictNullChecks`
 
-10.  Never类型
+10. Never类型
 
     never 类型表示的是那些永不存在的值的类型， 例如，`never`类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型；变量也可能是`never`类型，当他们被永不为真的类型保护所约束时。
 
-    never类型是任何类型的子类型，也可以赋值给任何类型，然而，没有类型(void)是never的子类型或可以赋值给never类型（除了never本身之外）。 即使any也不可以赋值给never.
+    never类型是任何类型的子类型，也可以赋值给任何类型，然而，没有类型是never的子类型，或者没有类型可以赋值给never类型（除了never本身之外）。 即使any也不可以赋值给never.
+
+    > 注： 除了never本身可以赋值给never类型外，任何类型都不能赋值给never类型。
 
     ```tsx
     function error(message: string): never { // 返回never的函数必须存在无法达到的终点
@@ -172,7 +195,16 @@
     }
     ```
 
-11. Object 类型
+11. Object 类型  // 大Object 官方文档中没有明确介绍这种类型,Object类型可以为他赋值任何类型，但是却不能够在它上面调用任意的方法，即便是他真的有这个方法，什么意思呢？
+
+    ```tsx
+let a:Object = 4
+    a.toFixed(2) // Error
+
+    a.toString() // '4' OK
+    ```
+    
+12. object 类型 // 小 object
 
     object 表示非原始类型，也就是除了number、 string、boolean、 null、undefined、symbol之外的类型，
 
@@ -188,22 +220,23 @@
     create(undefined) // Error
     ```
 
-12. 类型断言
+13. 类型断言
 
     有时候你会比ts更了解某个值的详细信息，你会清楚的知道这个实例具有比他现有类型更确切的类型，通过`类型断言`可以告诉编译器，相信我我知道我在干什么，类型断言就好比其他语言中的类型转换，但是不进行特殊的数据检查和解构。他没有运行时的影响，只是在编译阶段起作用，ts会假设你，程序员，已经进行了必须的检查。
 
     类型断言有两种形式
 
     ```tsx
-    let someValue: ant = 'this is a string'
+    let someValue: any = 'this is a string'
     let strLength: number = (<string>someValue).length
     ```
 
     另一种as语法
 
     ```tsx
-    let someValue: ant = 'this is a string'
+    let someValue: any = 'this is a string'
     let strLength: number = (someValue as string).length
     ```
 
     两种写法等价，凭个人喜好使用， 但是在ts中使用jsx是，只有as语法断言是被允许的。
+

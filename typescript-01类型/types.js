@@ -34,3 +34,14 @@ function error(message) {
 var str = 'hello world, I\'m a string';
 var strLength = str.length; // 类型断言
 var sLength = str.length; // 类型断言
+var People;
+(function (People) {
+    People[People["firstName"] = 0] = "firstName";
+    People[People["secondName"] = 5] = "secondName";
+    People[People["thirdName"] = 6] = "thirdName";
+})(People || (People = {}));
+var p1 = People.firstName;
+var p2 = People.thirdName;
+console.log(p1, p2);
+var o = 4;
+console.log(o);

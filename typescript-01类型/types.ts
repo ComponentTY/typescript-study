@@ -62,3 +62,24 @@ let str: any = 'hello world, I\'m a string'
 let strLength: number = (<string>str).length // 类型断言
 
 let sLength: number =(str as string).length // 类型断言
+
+enum People{
+    firstName,
+    secondName = 5,
+    thirdName
+}
+
+let p1:People = People.firstName
+
+let p2:People = People.thirdName
+
+console.log(p1, p2)
+
+
+let o: Object = 4
+
+o.toString()
+
+console.log(o)
+
+let obj:object = {}

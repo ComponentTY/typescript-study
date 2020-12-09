@@ -1,4 +1,4 @@
-## typescript interface接口
+## typescript  interface接口
 
 - ##### 接口定义一套要求，起一个名字，如果后续有用到这个名字，就需要遵循他的要求，否则就会出错；
 
@@ -102,7 +102,6 @@ let a:number[] = [1,2,3]
 let arr:ReadonlyArray<number> = a
 a = arr as Array<number> 
 a = arr as number[]
-a = Array<number>arr
 ```
 
 readonly 与 const 使用场景，看把他作为变量还是一个属性， 属性就用readonly， 变量就用const。
