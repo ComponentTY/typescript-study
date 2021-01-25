@@ -77,3 +77,17 @@ let s: Array<number> = arr as number[]
 
 
 console.log(a)
+
+
+interface myFunc{
+    (source: string, subString: string): boolean
+}
+
+let funcDemo: myFunc
+
+funcDemo = function (src: string, s: string) {
+    let result = src.search(s)
+    return result > -1
+}
+
+console.log(funcDemo('12313', '1'))

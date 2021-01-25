@@ -4,8 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .namer .namer-child{
+            background: #0f0
+        }
+        .namer-child:nth-child(5n) {
+            background-color: #f00;
+        }
+        .stock-item-box:nth-child(3n) {
+            background: #f00;
+        }
+
+
+    </style>
 </head>
 <body>
+    <div class="namer">
+        <div class="namer-child">
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+        </div>
+        <div class="namer-child">
+            <div>2</div>
+            <div>2</div>
+            <div>2</div>
+        </div>
+        <div class="namer-child">
+            <div>3</div>
+            <div>3</div>
+            <div>3</div>
+        </div>
+        <div class="namer-child">
+            <div>4</div>
+            <div>4</div>
+            <div>4</div>
+        </div>
+        <div class="namer-child">
+            <div>5</div>
+            <div>5</div>
+            <div>5</div>
+        </div>
+        <div class="namer-child">
+            <div>6</div>
+            <div>6</div>
+            <div>6</div>
+        </div>
+        <div class="namer-child">
+            <div>7</div>
+            <div>7</div>
+            <div>7</div>
+        </div>
+        <div class="namer-child">
+            <div>8</div>
+            <div>8</div>
+            <div>8</div>
+        </div>
+        <div class="namer-child">
+            <div>9</div>
+            <div>9</div>
+            <div>9</div>
+        </div>
+        <div class="namer-child">
+            <div>10</div>
+            <div>10</div>
+            <div>10</div>
+        </div>
+    </div>
     <script src="./interface.js"></script>
+    <script>
+        function foo () {
+            var ccc = 2
+            this.bar()
+        }
+        function bar() {
+            console.log(this, this.ccc)
+        }
+        bar()
+    </script>
 </body>
 </html>
