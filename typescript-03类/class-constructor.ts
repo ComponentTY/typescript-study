@@ -1,24 +1,26 @@
-// 类的构造函数以及访问类型
-// public private protected
-
-class Person{
-    constructor (public name: string) {
+class Person {
+    public name: string
+    constructor (name: string) {
         this.name = name
-        console.log(this.name)
+    }
+    say () {
+        console.log(`Hello, My name is ${this.name}.`)
     }
 }
 
 class Teacher extends Person{
-    constructor (public name: string, private _age: number) {
-        super(name)
-        console.log(this.name, this._age)
+    constructor (name: string) {
+        super(name) // 继承的子类中使用构造函数必须要写super()
     }
-    get age () {
-        return this._age
+    say () {
+        console.log("Today is a sunny day, I'm so happy.")
+        super.say()
+    }
+    teach () {
+        console.log('My name is ' + this.name + ', I can teach math')
     }
 }
 
-const person = new Person('fwt')
-
-const teacher = new Teacher('wty', 18)
-console.log(teacher.age)
+const teacher = new Teacher('小明')
+teacher.teach()
+teacher.say()
